@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG 资料索引 | 数字娱乐专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f6f8fc;
+            color: #1e2a3a;
+            line-height: 1.6;
+        }
+
+        /* ---------- 深色头图 ---------- */
+        .hero {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b2f44 50%, #0f1e2c 100%);
+            color: #e8edf5;
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, #f6f8fc, transparent);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero h1 span {
+            color: #f7b731;
+            font-weight: 600;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #bcc9db;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: 0.3rem 1.2rem;
+            border: 1px solid #f7b731;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #f7b731;
+            letter-spacing: 0.04em;
+        }
+
+        /* ---------- 正文容器 ---------- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .intro-section {
+            margin-top: -1.5rem;
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            border-radius: 20px 20px 0 0;
+            padding: 3.5rem 2.5rem 2.5rem;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .intro-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #f7b731;
+            padding-left: 1rem;
+            color: #0d1b2a;
+        }
+
+        .intro-section p {
+            margin-bottom: 1.4rem;
+            color: #2c3e50;
+        }
+
+        .intro-section a {
+            color: #c87c1e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+            font-weight: 500;
+        }
+
+        .intro-section a:hover {
+            border-bottom-color: #c87c1e;
+        }
+
+        /* ---------- 卡片区：资料整理视角 ---------- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf2;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-card .num {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #f7b731;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #0f1e2c;
+        }
+
+        .feature-card p {
+            color: #3e5060;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- FAQ 摘要 ---------- */
+        .faq-summary {
+            background: #f1f5fb;
+            border-radius: 18px;
+            padding: 2rem 2rem 2.2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #0d1b2a;
+        }
+
+        .faq-summary details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #dce3ed;
+            padding-bottom: 0.8rem;
+        }
+
+        .faq-summary details[open] {
+            padding-bottom: 1rem;
+        }
+
+        .faq-summary summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1e2a3a;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-summary summary::before {
+            content: '▸';
+            margin-right: 0.6rem;
+            color: #f7b731;
+            font-weight: 700;
+            transition: transform 0.2s;
+        }
+
+        .faq-summary details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-summary .answer {
+            margin-top: 0.3rem;
+            padding-left: 1.6rem;
+            color: #3e5060;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- 尾页提示 ---------- */
+        .footer-note {
+            margin: 2.5rem 0 1.5rem;
+            padding: 2rem 0 1.5rem;
+            border-top: 1px solid #dce3ed;
+            text-align: center;
+            color: #4b5c6b;
+        }
+
+        .footer-note p {
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-note .link-embed {
+            color: #c87c1e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-note .link-embed:hover {
+            border-bottom-color: #c87c1e;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 680px) {
+            .hero {
+                padding: 4rem 1.5rem 4rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .intro-section {
+                padding: 2rem 1.2rem 1.8rem;
+                border-radius: 14px 14px 0 0;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .faq-summary {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 深色头图 -->
+<header class="hero">
+    <h1>资料·<span>PG</span> 索引</h1>
+    <p>从信息整理与内容脉络出发，系统梳理数字娱乐领域的产品架构、界面逻辑与交互文档。</p>
+    <span class="tagline">专题 · 笔记 · 归档</span>
+</header>
+
+<!-- 浅色正文区 -->
+<div class="container">
+    <section class="intro-section">
+
+        <h2>背景说明</h2>
+        <p>
+            本专题围绕 <a href="https://portal-ssl-pgsoft.com">pg电子</a> 的产品体系，以资料分类与信息结构为切入点，整理其客户端表现层、资源加载机制以及多语言适配逻辑。内容源自公开技术文档与界面实测记录，不涉及商业策略或用户数据，保持客观中立的索引视角。
+        </p>
+        <p>
+            在持续跟踪迭代记录的过程中，我们注意到其渲染框架对移动端交互做了专项优化，同时保持了较高的主题定制弹性。以下三段内容分别从逻辑框架、内容场景、信息可维护性三个层面展开。
+        </p>
+
+        <!-- 三段自然介绍（卡片形式） -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="num">01</div>
+                <h3>逻辑框架与模块分层</h3>
+                <p>
+                    整体架构采用模块分层方式，核心层处理资源调度与状态管理，表现层独立为可替换主题包。这种分离使得迭代时能够快速调整视觉语言而不影响底层逻辑。接口文档中明确了异步加载锚点，便于第三方集成时做性能预检。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="num">02</div>
+                <h3>典型内容场景</h3>
+                <p>
+                    界面中大量运用渐进式信息呈现：列表页优先展示关键元数据，详情页再展开完整参数与交互反馈。在实测中，多语言版本下的文案自适应与布局流保持了较好的一致性，未出现截断或重叠问题。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="num">03</div>
+                <h3>信息可维护性</h3>
+                <p>
+                    配置项以 JSON 结构集中管理，涵盖交互阈值、动效时长、网络重试策略等。通过环境变量区分沙盒与正式环境，降低误操作风险。同时内置了结构化日志输出，便于回溯界面状态与资源加载时序。
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要（以资料整理角度） -->
+        <div class="faq-summary">
+            <h3>FAQ 摘要 · 资料整理视角</h3>
+            <details>
+                <summary>如何理解 pg电子 的资源加载机制？</summary>
+                <div class="answer">
+                    资源采用按需加载与预加载结合的策略：核心脚本首屏内联，主题资源在空闲时预拉取。缓存策略依据资源类型设定不同 max-age，同时提供版本哈希避免缓存污染。该机制在弱网条件下仍有较好的容错表现。
+                </div>
+            </details>
+            <details>
+                <summary>界面主题的自定义空间有多大？</summary>
+                <div class="answer">
+                    主题层基于 CSS 自定义属性与 SVG 图标系统，支持替换配色、圆角、间距等视觉 token。官方文档提供了主题生成器的参考实现，可在不侵入逻辑的前提下完成品牌化适配。
+                </div>
+            </details>
+            <details>
+                <summary>多语言内容的维护流程是怎样的？</summary>
+                <div class="answer">
+                    文案以 key-value 形式存储在独立的 locale 文件中，支持按模块拆分。构建时自动合并并注入全局字典。对于包含复数或占位符的文本，有专门的格式化函数处理，保证各语言下的语法正确性。
+                </div>
+            </details>
+        </div>
+
+        <!-- 页尾访问提示（自然嵌入链接） -->
+        <div class="footer-note">
+            <p>
+                若需查阅完整界面文档与最新版本说明，可访问 <a href="https://portal-ssl-pgsoft.com" class="link-embed">pg电子</a> 资料页面，其中包含了组件示例、API 参考及环境配置指引。本索引持续根据公开信息更新，仅供学习与内部参考使用。
+            </p>
+        </div>
+
+    </section>
+</div>
+
+</body>
+</html>
